@@ -4,7 +4,7 @@ const path = require('path');
 const WebSocket = require('ws');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Serve static files from public directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -86,7 +86,7 @@ async function runHackerNewsValidation() {
                 const articleElements = document.querySelectorAll('.athing');
                 const articleData = [];
 
-                articleElements.forEach((article, index) => {
+                articleElements.forEach((article) => {
                     const titleElement = article.querySelector('.titleline > a');
                     const scoreElement = article.nextElementSibling?.querySelector('.score');
                     const ageElement = article.nextElementSibling?.querySelector('.age');
