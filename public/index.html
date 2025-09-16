@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker News Validator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="wolf-emoji">🐺</div>
+            <h1>QA Wolf Assessment</h1>
+            <p class="subtitle">Hacker News Article Sorting Validator</p>
+        </header>
+
+        <div class="control-panel">
+            <button id="startTest" class="start-btn">
+                <i class="fas fa-play"></i>
+                Start Validation Test
+            </button>
+            <p style="margin-top: 15px; color: #666;">
+                This test will collect <strong>100 articles</strong> and validate if they are sorted from <strong>newest to oldest</strong>
+            </p>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" ></div>
+            </div>
+            <div class="progress-text" id="progressText">Ready to Start validation</div>
+        </div>
+
+        <div id="statsSection" class="stats-grid" style="display: none">
+            <div class="stat-card">
+                <div class="stat-number" id="totalArticles">0</div>
+                <div class="stat-label">Articles Collected</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="sortingErrors">-</div>
+                <div class="stat-label">Sorting Violations</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="testStatus">-</div>
+                <div class="stat-label">Test Results</div>
+            </div>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h2>Validation Results</h2>
+                <div class="results-badge running" id="resultsBadge">
+                    <i class="fas fa-clock"></i> Running...
+                </div>
+            </div>
+            <div class="results-content" id="resultsContent">
+                <div style="text-align: center; padding: 40px">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #ccc;"></i>
+                    <p style="margin-top: 15px; color: #666;">Collecting and validating articles...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <span class="footer-text">Built by <strong>Marshall Stone</strong></span>
+                <span class="footer-divider">•</span>
+                <span class="footer-text">QA Wolf Assessment</span>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/marshallstone9" target="_blank" class="footer-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://linkedin.com/in/marshallstone9" target="_blank" class="footer-link">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
