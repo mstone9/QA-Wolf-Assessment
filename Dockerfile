@@ -1,25 +1,21 @@
-# Start from a Node.js base image. We'll use a version
-# that's compatible and will allow us to install packages.
+# Start from a Node.js base image
 FROM node:20-bookworm
 
-# Install the system dependencies for Playwright.
-# Note the change: we are now using `libasound2t64` instead of `libasound2`.
-# This is the new, correct package name for Ubuntu 24.04 (noble).
+# Install the system dependencies for Playwright, tailored for Debian "Bookworm".
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    # Install dependencies required by Playwright, with fixes for newer Ubuntu
+    # Core dependencies for Chromium
     ca-certificates \
     fonts-liberation \
-    libasound2t64 \
+    libasound2 \
     libnss3 \
     libnspr4 \
     libxss1 \
     libappindicator3-1 \
-    libindicator3-7 \
     libsecret-1-0 \
     libgbm-dev \
     libgtk-3-0 \
-    # Clean up APT when done
+    # Clean up APT cache to reduce image size
     && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory inside the container
@@ -30,8 +26,6 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install project dependencies.
-# This will also install Playwright, but since the system dependencies
-# are already installed, it will not attempt to install them again.
 RUN npm install
 
 # Copy the rest of your application code
