@@ -1,19 +1,16 @@
-# Use the official Playwright Docker image as the base.
-# This image comes with Node.js and all the necessary
-# system dependencies for Playwright to run.
-FROM mcr.microsoft.com/playwright/node:1.45.0-jammy
+# Start from the official Playwright Docker image.
+# We'll use the version you found in the documentation.
+FROM mcr.microsoft.com/playwright:v1.55.0-noble
 
 # Set the working directory inside the container
 WORKDIR /app
 
 # Copy the package.json and package-lock.json to leverage
-# Docker's build cache. This installs dependencies before
-# copying the rest of your app code.
+# Docker's build cache.
 COPY package*.json ./
 
-# Install project dependencies. The browsers are already
-# installed in the base image, so we don't need a
-# separate step for npx playwright install.
+# Install your Node.js dependencies, including the Playwright package.
+# The base image does not include the Playwright library itself.
 RUN npm install
 
 # Copy the rest of your application code
