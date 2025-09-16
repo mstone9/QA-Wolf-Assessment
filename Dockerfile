@@ -1,6 +1,26 @@
-# Start from the official Playwright Docker image.
-# We'll use the version you found in the documentation.
-FROM mcr.microsoft.com/playwright:v1.55.0-noble
+# Start from a Node.js base image. We'll use a version
+# that's compatible and will allow us to install packages.
+FROM node:20-bookworm
+
+# Install the system dependencies for Playwright.
+# Note the change: we are now using `libasound2t64` instead of `libasound2`.
+# This is the new, correct package name for Ubuntu 24.04 (noble).
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    # Install dependencies required by Playwright, with fixes for newer Ubuntu
+    ca-certificates \
+    fonts-liberation \
+    libasound2t64 \
+    libnss3 \
+    libnspr4 \
+    libxss1 \
+    libappindicator3-1 \
+    libindicator3-7 \
+    libsecret-1-0 \
+    libgbm-dev \
+    libgtk-3-0 \
+    # Clean up APT when done
+    && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -9,8 +29,9 @@ WORKDIR /app
 # Docker's build cache.
 COPY package*.json ./
 
-# Install your Node.js dependencies, including the Playwright package.
-# The base image does not include the Playwright library itself.
+# Install project dependencies.
+# This will also install Playwright, but since the system dependencies
+# are already installed, it will not attempt to install them again.
 RUN npm install
 
 # Copy the rest of your application code
