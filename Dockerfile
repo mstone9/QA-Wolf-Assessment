@@ -1,7 +1,7 @@
 # Use the official Playwright Docker image as the base.
 # This image comes with Node.js and all the necessary
 # system dependencies for Playwright to run.
-FROM mcr.microsoft.com/playwright/node:18
+FROM mcr.microsoft.com/playwright/node:lts
 
 # Set the working directory inside the container
 WORKDIR /app
