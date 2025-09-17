@@ -89,7 +89,7 @@ async function runHackerNewsValidation() {
     try {
         // Navigate to the "newest" articles page on Hacker News
         await page.goto('https://news.ycombinator.com/newest');
-        broadcast({type: 'status', message: '📄 Hacker News page loaded', progress: 5});
+        broadcast({type: 'status', message: 'Hacker News page loaded', progress: 5});
 
         const articles = [];
         let currentPage = 1;
